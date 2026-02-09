@@ -1,4 +1,6 @@
-/* ===== Fonts (keep from repo) ===== */
+/* =========================
+   Fonts (keep from repo)
+========================= */
 @font-face {
   font-family: SeafordBold;
   src: url(./font/SeafordBold.ttf);
@@ -11,167 +13,230 @@
   font-weight: normal;
 }
 
-/* ===== Base ===== */
+/* =========================
+   Base / Theme
+========================= */
+:root{
+  --bg: #0b1020;
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel-strong: rgba(255, 255, 255, 0.10);
+  --border: rgba(255, 255, 255, 0.12);
+  --text: #e9eefc;
+  --muted: rgba(233, 238, 252, 0.80);
+  --accent: #6ea8ff;
+  --accent-2: #9b8cff;
+  --shadow: 0 14px 40px rgba(0,0,0,0.35);
+}
+
 * { box-sizing: border-box; }
 
-body {
+body{
   margin: 0;
-  font-family: SeafordRg, Arial, sans-serif;
-  background-color: #f7f8fb;   /* light gray so the page stands out */
-  color: #111;
-  line-height: 1.6;
+  font-family: SeafordRg, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 20% 0%, rgba(110,168,255,0.25), transparent 60%),
+              radial-gradient(1000px 550px at 85% 10%, rgba(155,140,255,0.18), transparent 55%),
+              var(--bg);
+  line-height: 1.55;
 }
 
-/* ===== Container ===== */
-.container {
-  width: min(1000px, 92vw);
-  background-color: #fff;
+/* =========================
+   Main Container
+========================= */
+.container{
+  width: min(1100px, 92vw);
   margin: 30px auto;
-  padding: 24px;
-  border: 1px solid #e6e8ee;
-  border-radius: 12px;
+  padding: 26px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
 }
 
-/* ===== Headings ===== */
-h1 {
-  margin: 0 0 12px;
-  color: #0b2a6f; /* deep navy */
-  font-family: SeafordBold;
+/* Optional: if your HTML has sections/divs inside */
+.container > div{
+  padding: 16px;
+  border-radius: 14px;
+}
+
+/* =========================
+   Headings
+========================= */
+h1{
+  margin: 0 0 10px;
   text-align: center;
-  letter-spacing: 0.3px;
+  font-family: SeafordBold, SeafordRg, sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: 0.5px;
+  color: var(--text);
 }
 
-h2 {
+h2{
   margin-top: 18px;
-  margin-bottom: 8px;
-  font-family: SeafordBold;
-  color: #0b2a6f;
+  font-family: SeafordBold, SeafordRg, sans-serif;
+  color: var(--accent);
+  font-size: clamp(18px, 2.2vw, 26px);
 }
 
-/* ===== Paragraphs ===== */
-p {
-  font-family: SeafordRg;
-  color: #111;
+/* =========================
+   Paragraphs + Highlight
+========================= */
+p{
   margin: 10px 0;
+  color: var(--text);
 }
 
-p.myP {
-  color: #2f2f2f;
+p.myP{
+  color: var(--muted);
   text-align: justify;
   text-justify: inter-word;
   padding: 12px 14px;
-  background: #fafbff;
-  border-left: 4px solid #0b2a6f;
-  border-radius: 8px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: rgba(255,255,255,0.03);
 }
 
-p.myP:hover {
-  background-color: #f1f4ff;
+p.myP:hover{
+  background: var(--panel-strong);
+  border-color: var(--border);
 }
 
-/* ===== Links ===== */
-a {
-  color: #0b2a6f;
+/* =========================
+   Links (professional)
+========================= */
+a{
+  color: var(--accent);
   text-decoration: none;
   font-weight: 600;
 }
 
-a:hover {
+a:hover{
   text-decoration: underline;
 }
 
-/* ===== Lists ===== */
-ul, ol {
-  margin: 10px 0;
-  padding: 10px 18px;
-  background: #fafafa;
-  border: 1px solid #eee;
-  border-radius: 10px;
+/* =========================
+   Lists
+========================= */
+ul, ol{
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
-ul:hover, ol:hover {
-  background-color: #f4f6f9;
+ul:hover, ol:hover{
+  background: var(--panel-strong);
+  border-color: var(--border);
 }
 
-/* Keep your custom numbered list style */
-ol {
+ol{
   list-style: none;
   counter-reset: num;
 }
 
-ol li {
+ol li{
   counter-increment: num;
   padding: 6px 0;
+  color: var(--muted);
 }
 
-ol li::before {
+ol li::before{
   content: counter(num) ". ";
-  color: #0b2a6f;
-  font-family: SeafordBold;
+  color: var(--accent);
+  font-family: SeafordBold, SeafordRg, sans-serif;
 }
 
-/* ===== Table ===== */
-#mytable {
-  font-family: SeafordRg;
+/* =========================
+   Table
+========================= */
+#mytable{
+  width: min(780px, 100%);
   border-collapse: collapse;
-  width: min(650px, 100%);
-  margin-top: 10px;
-  border: 1px solid #e6e8ee;
-  border-radius: 10px;
+  border-radius: 14px;
   overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
 }
 
-#mytable td, #mytable th {
-  border-bottom: 1px solid #e6e8ee;
-  padding: 10px;
-}
-
-#mytable th {
+#mytable th, #mytable td{
+  padding: 12px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
   text-align: left;
-  background-color: #0b2a6f;
-  color: white;
-  font-family: SeafordBold;
 }
 
-#mytable tr:nth-child(even) {
-  background-color: #f7f8fb;
+#mytable th{
+  background: rgba(110,168,255,0.18);
+  color: var(--text);
+  font-family: SeafordBold, SeafordRg, sans-serif;
+  letter-spacing: 0.4px;
 }
 
-#mytable tr:hover {
-  background-color: #eef2ff;
+#mytable tr:nth-child(even){
+  background: rgba(255,255,255,0.02);
 }
 
-/* You had this globally; keep it if you want centered cells */
-td {
+#mytable tr:hover{
+  background: rgba(110,168,255,0.10);
+}
+
+/* You had td centered globally — we’ll keep it but soften it */
+td{
   text-align: center;
 }
 
-/* ===== Form Labels ===== */
-label {
+/* =========================
+   Forms
+========================= */
+label{
   display: inline-block;
   width: 110px;
   text-align: right;
+  color: var(--muted);
 }
 
-/* ===== Profile Image ===== */
-img.myImage {
-  height: 140px;
-  width: 140px;
+input, textarea, select{
+  width: min(420px, 90%);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  outline: none;
+}
+
+input:focus, textarea:focus, select:focus{
+  border-color: rgba(110,168,255,0.55);
+  box-shadow: 0 0 0 4px rgba(110,168,255,0.18);
+}
+
+/* =========================
+   Profile Image
+========================= */
+img.myImage{
+  height: 150px;
+  width: 150px;
   border-radius: 50%;
-  border: 2px solid #0b2a6f;
+  border: 3px solid rgba(110,168,255,0.55);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
   object-fit: cover;
 }
 
-/* ===== Simple responsive ===== */
-@media (max-width: 650px) {
-  label {
-    width: auto;
-    text-align: left;
-    display: block;
-    margin-bottom: 6px;
-  }
+/* =========================
+   Simple "card" utility (optional)
+========================= */
+.card{
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  padding: 16px;
+}
 
-  td {
-    text-align: left;
-  }
+/* =========================
+   Responsive tweaks
+========================= */
+@media (max-width: 700px){
+  .container{ padding: 18px; }
+  label{ width: auto; text-align: left; display: block; margin-bottom: 6px; }
+  td{ text-align: left; }
 }
